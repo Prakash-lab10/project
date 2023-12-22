@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Social App{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>My Social App</h1>
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}! (<a href="{% url 'logout' %}">Logout</a>)</p>
+            {% else %}
+                <p>(<a href="{% url 'login' %}">Login</a>) or (<a href="{% url 'register' %}">Register</a>)</p>
+            {% endif %}
+        </div>
+    </header>
+    
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <div class="container">
+            <!-- Your footer content goes here -->
+        </div>
+    </footer>
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
